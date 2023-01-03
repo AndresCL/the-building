@@ -1,0 +1,39 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  .building-workspace {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 56px);
+    justify-content: flex-end;
+
+    .apartment {
+      width: 300px;
+
+      .electrodomestic {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .toast {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    .show {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.5s linear;
+    }
+    .hide {
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s linear;
+    }
+  }
+}
