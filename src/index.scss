@@ -13,10 +13,30 @@ body,
     justify-content: flex-end;
 
     .apartment {
+      opacity: 1;
+      background-color: #fff;
+      transition: background-color .5s;
       width: 300px;
 
-      .electrodomestic {
-        cursor: pointer;
+      &:hover {
+        background-color: #efefef;
+      }
+      
+      .electrodomestics {
+        align-content: center;
+        align-items: center;
+        display: flex;
+        height: 30px;
+        justify-content: space-between;
+
+        .electrodomestic {
+          cursor: pointer;
+          transition: color 2s, font-size 0.2s;
+  
+          &:hover {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
   }
