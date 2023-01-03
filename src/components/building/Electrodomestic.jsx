@@ -30,7 +30,7 @@ export const Electrodomestic = ({ id, apartmentId, name, iconClass, state, watts
   return (
     <i
       onClick={() => switchState(id, apartmentId)}
-      className={`${iconClass} me-2 electrodomestic`}
-      style={state ? {color: 'black'} : {color: 'gray'} }></i>
+      className={`${iconClass} me-2 electrodomestic fa-lg`}
+      style={state ? {color: '#15c3e6'} : {color: 'gray'} }></i>
   )
 }

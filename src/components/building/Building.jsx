@@ -20,7 +20,7 @@ export const Building = () => {
           }
         </ul>
 
-        <Navbar/>
+        <Navbar totalApartments={apartments.length} />
       </div>
 
       <Toast />

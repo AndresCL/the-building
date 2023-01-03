@@ -10,7 +10,7 @@ export const Apartment = ({ id, electrodomestics, wattsMax }) => {
       <hr />
       <Progress apartmentId={id} electrodomestics={electrodomestics} wattsMax={wattsMax} />
       <br />
-      <div>
+      <div className="electrodomestics">
         {
           electrodomestics.map((electrodomestic) => (
             <Electrodomestic key={electrodomestic.id} apartmentId={id} {...electrodomestic} />
