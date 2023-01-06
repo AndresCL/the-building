@@ -15,6 +15,7 @@ const initialState = {
     id: uuidv4(),
     name: 'New apartment',
     wattsMax: 700,
+    wattsUsage: 0,
     electrodomestics
   }]
 }
@@ -28,6 +29,7 @@ export const apartmentsSlice = createSlice({
         id: uuidv4(),
         name: 'New apartment',
         wattsMax: 700,
+        wattsUsage: 0,
         electrodomestics
       });
     },
@@ -45,21 +47,36 @@ export const apartmentsSlice = createSlice({
 
       // Update it state
       electrodomestic.state = !electrodomestic.state;
+
     },
-    resetElectrodomesticState: (state, action) => {
-      console.log('resetElectrodomesticState...')
+    updateWattUsage: (state, action) => {
+
       // Find apartment
       const apartment = state.apartments.find((apartment) => {
-        return apartment.id === action.payload;
+        return apartment.id === action.payload.apartmentId;
       });
-      console.log(apartment)
-      // Reset electrodomestics state to false
-      apartment.electrodomestics.forEach((electrodomestic) => {
-        electrodomestic.state = false;
-      })
-    }
+
+      // Update total watts usage
+      const wattsUsage =
+        action.payload.type === 'increase' ? apartment.wattsUsage + action.payload.watts : apartment.wattsUsage - action.payload.watts;
+
+      const wattsUsagePercent = (wattsUsage * 100) / apartment.wattsMax;
+
+      if (wattsUsagePercent > 100) {
+        // Reset electrodomestics state to false
+        apartment.electrodomestics.forEach((electrodomestic) => {
+          electrodomestic.state = false;
+        });
+
+        // Reset apartment watts usage
+        apartment.wattsUsage = 0;
+      } else {
+        apartment.wattsUsage = wattsUsage;
+      }
+
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addApartment, resetElectrodomesticState, updateElectrodomesticState } = apartmentsSlice.actions;
+export const { addApartment, updateElectrodomesticState, updateWattUsage } = apartmentsSlice.actions;
